@@ -1,23 +1,23 @@
 const artists = [
     {
-      "id": 0,
-      "name": "Amedeo Modigliani",
-      "years": "1884 - 1920",
-      "genre": "Expressionism",
-      "nationality": "Italian",
-      "bio": "Amedeo Clemente Modigliani (Italian pronunciation: [ameˈdɛːo modiʎˈʎaːni]; 12 July 1884 – 24 January 1920) was an Italian Jewish painter and sculptor who worked mainly in France. He is known for portraits and nudes in a modern style characterized by elongation of faces, necks, and figures that were not received well during his lifetime but later found acceptance. Modigliani spent his youth in Italy, where he studied the art of antiquity and the Renaissance. In 1906 he moved to Paris, where he came into contact with such artists as Pablo Picasso and Constantin Brâncuși. By 1912 Modigliani was exhibiting highly stylized sculptures with Cubists of the Section d'Or group at the Salon d'Automne.",
-      "wikipedia": "http://en.wikipedia.org/wiki/Amedeo_Modigliani",
-      "paintings": 193
+      id: 0,
+      name: "Amedeo Modigliani",
+      years: "1884 - 1920",
+      genre: "Expressionism",
+      nationality: "Italian",
+      bio: "Amedeo Clemente Modigliani (Italian pronunciation: [ameˈdɛːo modiʎˈʎaːni]; 12 July 1884 – 24 January 1920) was an Italian Jewish painter and sculptor who worked mainly in France. He is known for portraits and nudes in a modern style characterized by elongation of faces, necks, and figures that were not received well during his lifetime but later found acceptance. Modigliani spent his youth in Italy, where he studied the art of antiquity and the Renaissance. In 1906 he moved to Paris, where he came into contact with such artists as Pablo Picasso and Constantin Brâncuși. By 1912 Modigliani was exhibiting highly stylized sculptures with Cubists of the Section d'Or group at the Salon d'Automne.",
+      wikipedia: "http://en.wikipedia.org/wiki/Amedeo_Modigliani",
+      paintings: 193
     },
     {
-      "id": 1,
-      "name": "Vasiliy Kandinskiy",
-      "years": "1866 - 1944",
-      "genre": "Expressionism,Abstractionism",
-      "nationality": "Russian",
-      "bio": "Wassily Wassilyevich Kandinsky (Russian: Васи́лий Васи́льевич Канди́нский, tr. Vasíliy Vasílʹevich Kandínskiy) (16 December [O.S. 4 December] 1866 – 13 December 1944) was a Russian painter and art theorist.",
-      "wikipedia": "http://en.wikipedia.org/wiki/Wassily_Kandinsky",
-      "paintings": 88
+      id: 1,
+      name: "Vasiliy Kandinskiy",
+      years: "1866 - 1944",
+      genre: "Expressionism,Abstractionism",
+      nationality: "Russian",
+      bio: "Wassily Wassilyevich Kandinsky (Russian: Васи́лий Васи́льевич Канди́нский, tr. Vasíliy Vasílʹevich Kandínskiy) (16 December [O.S. 4 December] 1866 – 13 December 1944) was a Russian painter and art theorist.",
+      wikipedia: "http://en.wikipedia.org/wiki/Wassily_Kandinsky",
+      paintings: 88
     },
     {
       "id": 2,
@@ -208,10 +208,12 @@ const artists = [
 (1) Name of the first artist (0th index) in the array
 (2) Bio of the third artist (2nd index) in the array */
 
+console.log(artists[0].name);
+console.log(artists[1].bio);
 
 
 /* Task 2: There is a typo in your dataset 😱 The 9th artist, Vincent Van Gogh is currently Vincent Van Dough. Use an array method to fix this issue and console.log() to check your work. */
-
+artists[8].name = "Vincent Van Gogh";
 
 
 /* Task 3: Create a function called `getArtistByIndex` that takes two arguments:
@@ -223,7 +225,10 @@ const artists = [
  * it will return `The artist at index 0 is Amedeo Modigliani`.
 */
 function getArtistByIndex(array, index) {
-    /* code here */
+    let msg = `The artist at index ${artists[index].id} is ${artists[index].name}.`
+    return msg;
+
+
   }
   
   /**
@@ -231,10 +236,16 @@ function getArtistByIndex(array, index) {
 
 /* Task 4: Create a function called get20s() that takes data as an argument and returns an array with names of artists who were born in and died in 20th century (1900-2000) example born in 1901 and died in 1959 - included / born in 1889 and died in 1925 not included - should return ["Salvador Dali", "Frida Kahlo"]*/
 
-function get20s(/* Code here */){
-
-  /* Code here */
-
+function get20s(arr) {
+    let arr20 = [];
+    for (i = 0; i < arr.length; i++) {
+        if (arr[i].years.inludes('1900 - 2000')){
+            arr20.push(arr[i]);
+            
+        }
+        
+    }
+    return arr20;
 }
 
 
@@ -248,8 +259,9 @@ function get20s(/* Code here */){
  * 
  * Note that sucessfully invoking this function multiple times without refreshing your browser will continuously remove artists from the array until there are none left. If you refresh your browser, the data will reset.  
 */
-function removeArtist(/*code here*/) {
-    /* code here */
+function removeArtist(arr,idx) {
+    arr[idx].splice(idx, 1);
+    console.log(arr.length);
   }
   
  
@@ -266,13 +278,21 @@ nationality: Your Nationality Here
 bio: Add 1-2 sentences (or use lorem ipsum) 
 
 At the end, this function should return the new array with information added"*/
+function addArtist(arr){
+    function newArtist(id, nam, yers, gnr, nat, bio, wiki, pntgs, arr) {
+        this.id = id;
+        this.nam = name;
+        this.yers = years;
+        this.gnr = genre;
+        this.nat = nationality;
+        this.bio = bio;
+        this.wiki = wikipedia;
+        this.pntgs = paintings;
 
-function addArtist(/* Code here */){
 
-    /* Code here */
-
-  }
-
+    }
+    arr.push(newArtist());
+}
 /* Task 7: Create a function called lotsOfArt() that takes one argument: 
 
     (1) artists array 
@@ -281,10 +301,13 @@ and returns an array with names of artists who painted more than 100 paintings.
 
 For example lotsOfArt(artists); will return ["Amedeo Modigliani", "Rene Magritte", ..."Albrecht Dürer"]*/
 
-function lotsOfArt(/* Code here */){
-
-  /* Code here */
-
+function lotsOfArt(arr){
+    let newArr = [];
+    for (i = 0; i < arr.length; i++) {
+        if (arr[i].paintings > 100)
+            newArr.push(arr[i]);
+    }
+    return newArr;
 }
 
 
